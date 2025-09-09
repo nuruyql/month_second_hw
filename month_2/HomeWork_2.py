@@ -4,7 +4,7 @@ class Person:
         self.name = name
         self.age = age
         self.occupation = occupation
-    def introduce(self,name,age,occupation):
+    def introduce(self):
         return f"Hello my name is {self.name}, i am {self.age} years old and i work as a {self.occupation}"
 class ClassMate(Person):
     def __init__(self, name, age, occupation, place_of_residents):
@@ -28,11 +28,9 @@ class Friend(Person):
                 f" i work as a {self.occupation} and"
                 f" my hobby is {self.hobby}")
 person1 = Person("Nurbol",17,"Backend developer")
-
-#
-person1.introduce()
+print(person1.introduce())
 person2 = ClassMate("Max",17,"Frontend developer","Bishkek")
-person2.introduce()
+print(person2.introduce())
 person3 = Friend("Timur",17,"Security developer","Basketball")
-person3.introduce()
+print(person3.introduce())
 
