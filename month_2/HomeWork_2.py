@@ -28,6 +28,8 @@ class Friend(Person):
                 f" i work as a {self.occupation} and"
                 f" my hobby is {self.hobby}")
 person1 = Person("Nurbol",17,"Backend developer")
+
+#
 person1.introduce()
 person2 = ClassMate("Max",17,"Frontend developer","Bishkek")
 person2.introduce()
