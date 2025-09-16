@@ -4,6 +4,7 @@ class Person:
         self.age = age
         self.__occupation = occupation
         self.__higher_edu = False
+    @property
     def get_occupation(self):
         return self.__occupation
     def set_edu(self,higher_ed):
