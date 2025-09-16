@@ -15,5 +15,3 @@
 # print(check(password))
 
 
-
-def  clothe( : int) -> int:
