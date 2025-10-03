@@ -1,40 +1,31 @@
-# # homework_1.py
-#
-# class Person:
-#     def __init__(self, name, birth_date, occupation, higher_education):
-#         self.name = name
-#         self.birth_date = birth_date
-#         self.occupation = occupation
-#         self.higher_education = higher_education
-#
-#     def introduce(self):
-#         edu_status = "имеет высшее образование" if self.higher_education else "не имеет высшего образования"
-#         print(f"Привет! Меня зовут {self.name}. Я родился {self.birth_date}, "
-#               f"моя профессия — {self.occupation}. Я {edu_status}.")
-#
-#
-# # Создаём несколько объектов класса Person
-# person1 = Person("Иван Иванов", "1995-04-12", "Программист", True)
-# person2 = Person("Сакура Харуно", "1990-03-28", "Медик-ниндзя", True)
-# person3 = Person("Монки Д. Луффи", "2000-05-05", "Пират", False)
-#
-# # Распечатываем атрибуты
-# print(person1.name, person1.birth_date, person1.occupation, person1.higher_education)
-# print(person2.name, person2.birth_date, person2.occupation, person2.higher_education)
-# print(person3.name, person3.birth_date, person3.occupation, person3.higher_education)
-#
-# # Вызываем метод introduce у каждого объекта
-# person1.introduce()
-# person2.introduce()
-# person3.introduce()
+
+from dataclasses import dataclass
 
 
-class Car:
-    def __init__(self,year,brand):
-        self.year = year
-        self.brand = brand
-    def start_engeene(self,color):
-        self.color = color
-        print(f"{self.brand} {self.year} engine started. Color: {self.color}")
-my_car = Car(2008,"mersedez benz")
-my_car.start_engeene("red")
+@dataclass
+class Person:
+    name: str
+    birth_date: str
+    occupation: str
+    higher_edu: bool
+    def introduce(self) -> str:
+        introduc = []
+        introduc.append(f"-- My name is {self.name}")
+        introduc.append(f"-- My bitrh date is {self.birth_date}")
+        introduc.append(f"-- I work as a {self.occupation}")
+        introduc.append(self.check_higher_ed())
+        return "\n".join(introduc)
+    def check_higher_ed(self):
+        if self.higher_edu:
+            return "-- i have higher education"
+        else:
+            return "-- i have no higher education"
+
+
+person1 = Person("Nurbol","24.07","Backend Developer",True)
+person2 = Person("Aktan","29.04","Frontend Developer",False)
+print(person1.introduce())
+print("\n"+"-"*50 +"\n")
+print(person2.introduce())
+
+
