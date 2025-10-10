@@ -92,58 +92,70 @@
 
 
 
-from dataclasses import dataclass,field
-
+from dataclasses import dataclass, field
+from datetime import datetime
 
 @dataclass
 class Person:
     name: str
     __occupation: str
     __higher_education: bool = field(default=False)
+    __birth_date: datetime = field(default=None)
 
-    def introduce(self):
-        check_higher_ed = "higher education" if self.__higher_education else "no higher education"
-        return (f"My name is {self.name},"
-                f"i work as {self.__occupation}"
-                f"i have {check_higher_ed}"
-                )
+    @property
+    def age(self):
+        if self.__birth_date is None:
+            return None
+        today = datetime.today()
+        years = today.year - self.__birth_date.year
+        if (today.month, today.day) < (self.__birth_date.month, self.__birth_date.day):
+            years -= 1
+        return years
+
     @property
     def occupation(self):
         return self.__occupation
+
     @property
     def higher_education(self):
         return self.__higher_education
 
+    def introduce(self):
+        check_higher_ed = "higher education" if self.__higher_education else "no higher education"
+        age_text = f", I am {self.age} years old" if self.__birth_date else ""
+        return (f"My name is {self.name}{age_text}, "
+                f"I work as {self.__occupation}, "
+                f"I have {check_higher_ed}")
+
 class Classmate(Person):
-    def __init__(self,name,occupation,group_name):
-        super().__init__(name,occupation)
+    def __init__(self, name, occupation, group_name, birth_date=None, higher_education=False):
+        super().__init__(name, occupation, higher_education, birth_date)
         self.group_name = group_name
     def introduce(self):
         return f"{super().introduce()} and my group is {self.group_name}"
 
-
 class Friend(Person):
-    def __init__(self,name,occupation,hobby):
-        super().__init__(name,occupation)
+    def __init__(self, name, occupation, hobby, birth_date=None, higher_education=False):
+        super().__init__(name, occupation, higher_education, birth_date)
         self.hobby = hobby
     def introduce(self):
         return f"{super().introduce()} and my hobby is {self.hobby}"
+
 class BestFriend(Friend):
-    def __init__(self,name,occupation,hobby,shared_memory):
-        super().__init__(name,occupation,hobby)
+    def __init__(self, name, occupation, hobby, shared_memory, birth_date=None, higher_education=False):
+        super().__init__(name, occupation, hobby, birth_date, higher_education)
         self.shared_memory = shared_memory
     def introduce(self):
-        return f"{super().introduce()} and i remember about our {self.shared_memory}"
+        return f"{super().introduce()} and I remember about our {self.shared_memory}"
 
+# Примеры объектов
+classmate1 = Classmate("Nurbol", "Backend Developer", "CS24-12", datetime(2000,2,20), True)
+classmate2 = Classmate("Aktan", "Frontend Developer", "CS24-14", datetime(1999,5,10))
+friend1 = Friend("Maxim", "Frontend Developer", "skiing", datetime(2001,6,15))
+friend2 = Friend("Timur", "Backend Developer", "mobile games", datetime(2002,7,8))
+best_friend = BestFriend("Muhammed", "Dentist", "football", "first meeting", datetime(1998,3,3), True)
 
+introduce_object = [classmate1, classmate2, friend2, friend1, best_friend]
 
-
-classmate1 = Classmate("Nurbol","Backend Developer","CS24-12")
-classmate1._Person__higher_education = True
-classmate2 = Classmate("Aktan","Frontend Developer","CS24-14")
-friend1 = Friend("Maxim","Frontend Developer","skiing")
-friend2 = Friend("Timur","Backend Developer","mobile games")
-best_friend = BestFriend("Muhammed","Dentist","football","first meeting")
-introduce_object = [classmate1,classmate2,friend2,friend1,best_friend]
 for i in introduce_object:
     print(i.introduce())
