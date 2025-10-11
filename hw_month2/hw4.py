@@ -1,26 +1,27 @@
-class Vehicle:
-    def start(self):
-        print("Vehicle starting")
+from abc import ABC, abstractmethod
 
+
+@abstractmethod
+class Vehicle(ABC):
+    def start(self):
+        print("s1s1")
 
 class Car(Vehicle):
     def start(self):
         super().start()
-        print("Car starting")
-
-
+        print("Brym Brym")
 class ElectricCar(Vehicle):
     def start(self):
         super().start()
-        print("ElectricCar starting")
-
-
-class Tesla(Car, ElectricCar):
+        print("Tu-tu-tu-tu")
+class Tesla(Car,ElectricCar):
     def start(self):
         super().start()
-        print("Tesla ready")
+        print("SH-SH-SH")
 
 
 
-t = Tesla()
-t.start()
+vehicle = [Car,ElectricCar,Tesla]
+for i in vehicle:
+    i().start()
+    
