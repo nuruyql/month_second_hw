@@ -24,4 +24,5 @@ class Tesla(Car,ElectricCar):
 vehicle = [Car,ElectricCar,Tesla]
 for i in vehicle:
     i().start()
-    
+
+
