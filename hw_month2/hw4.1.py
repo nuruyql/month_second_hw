@@ -31,5 +31,5 @@ class AdminPageView(LoggingMixin, AuthRequiredMixin, BaseView):
         print("Admin page render end")
 
 # Тест:
-admin_page = AdminPageView(authed=False)
+admin_page = AdminPageView(authed=True)
 admin_page.render()
