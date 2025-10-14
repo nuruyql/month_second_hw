@@ -9,6 +9,8 @@ class Founder:
         return Founder(self.amount - other.amount)
     def __eq__(self, other):
         return self.amount == other.amount
+    def introduce(self):
+        pass
 
 mone1 = Founder(5000)
 mone2 = Founder(2900)
