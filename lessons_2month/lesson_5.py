@@ -7,6 +7,9 @@ class Founder:
         return Founder(self.amount + other.amount)
     def __sub__(self, other):
         return Founder(self.amount - other.amount)
+    def __eq__(self, other):
+        return self.amount == other.amount
+
 
 
 mone1 = Founder(5000)

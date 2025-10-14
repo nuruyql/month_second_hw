@@ -1,60 +1,27 @@
-from abc import ABC, abstractmethod
-
-# === Product (Продукт) ===
-class Transport(ABC):
-    @abstractmethod
-    def deliver(self):
-        pass
-
-
-# === Concrete Products (Конкретные продукты) ===
-class Truck(Transport):
-    def deliver(self):
-        return "Delivering goods by land in a truck 🚚"
-
-
-class Ship(Transport):
-    def deliver(self):
-        return "Delivering goods by sea in a ship 🚢"
+# def two_Sums(nums, target):
+#     seen = set()
+#     pairs = set()
+#
+#     for i in nums:
+#         need = target - i
+#         if need in seen:
+#             pairs.add(tuple(sorted((i, need))))
+#         seen.add(i)
+#     return list(pairs)
+#
+# # Пример вызова
+# nums = [5, 4, 6, 7, 8, 9, 8, 7, 7, 2, 1, 3]
+# target = 10
+#
+# print(two_Sums(nums, target))
 
 
-class Plane(Transport):
-    def deliver(self):
-        return "Delivering goods by air in a plane ✈️"
 
 
-# === Creator (Создатель) ===
-class Logistics(ABC):
-    @abstractmethod
-    def create_transport(self):
-        pass
-
-    def plan_delivery(self):
-        transport = self.create_transport()   # 👈 фабричный метод
-        print("Planning delivery...")
-        print(transport.deliver())
-        print("Delivery completed!\n")
 
 
-# === Concrete Creators (Конкретные логистики) ===
-class RoadLogistics(Logistics):
-    def create_transport(self):
-        return Truck()
 
 
-class SeaLogistics(Logistics):
-    def create_transport(self):
-        return Ship()
 
 
-class AirLogistics(Logistics):
-    def create_transport(self):
-        return Plane()
 
-
-# === Client Code (Клиентский код) ===
-if __name__ == "__main__":
-    logistics_list = [RoadLogistics(), SeaLogistics(), AirLogistics()]
-
-    for logistics in logistics_list:
-        logistics.plan_delivery()
