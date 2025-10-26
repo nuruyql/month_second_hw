@@ -1,4 +1,7 @@
 # dunder methods double underscore
+from lessons_2month.lesson_3 import Car, car_honda
+
+
 class Money:
     def __init__(self, amount=0):
         self.amount = amount
@@ -37,5 +40,8 @@ print(money_mirlan)
 print(money_igor == money_mirlan)
 print(money_igor > money_mirlan)
 print(money_mirlan > money_igor)
-
+print(f"{__name__=}")
+if __name__ == "__main__":
+    car_1 = Car("Model", "Color")
+print(car_1)
 print(f"Add two money objs: {money_igor + money_mirlan}")
